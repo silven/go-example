@@ -1,0 +1,5 @@
+.fmt
+.test
+godoc.zip
+coverage.html
+bin/*
