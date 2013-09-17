@@ -13,6 +13,7 @@ COV_REPORT	:= @gocov test $(addprefix $(ROOT_PKG)/, $(PACKAGES)) | gocov report
 COV_HTML	:= @gocov test $(addprefix $(ROOT_PKG)/, $(PACKAGES)) | gocov-html > $(HTML_FILE)
 GOTEST		:= @go test
 GORUN		:= go run
+GOVET		:= go vet
 OPEN_CMD	:= xdg-open
 ZIP_FILE	:= godoc.zip
 BIN_DIR		:= bin
@@ -28,9 +29,9 @@ A_FILES		:= $(foreach pkg, $(PACKAGES), $(PKG_ROOT)/$(pkg).a)
 TESTABLE	:= $(foreach pkg, $(PACKAGES), $(wildcard $(pkg)/*.go)) 
 GOFILES		:= $(TESTABLE) $(RUNNABLE)
 
-default:	fmt test install build
+default:	fmt vet test install build
 
-$(notdir $(basename $(RUNNABLES))): .fmt .test install
+$(notdir $(basename $(RUNNABLES))): .fmt .vet .test install
 		@GOOS=$(GOOS) GOARCH=$(GOARCH) $(GORUN) $(CMD_DIR)/$@.go
 
 bench:	$(TESTABLE)
@@ -56,6 +57,12 @@ fmt:	$(GOFILES)
 		$(GOFMT) $?
 		@touch .fmt
 
+vet:	$(TESTABLE)
+		$(GOVET) $(addprefix $(ROOT_PKG)/, $(sort $(^D)))
+
+.vet:	$(TESTABLE)
+		$(GOVET) $(addprefix $(ROOT_PKG)/, $(sort $(^D)))
+		@touch .vet
 cov:	
 		$(COV_REPORT)
 

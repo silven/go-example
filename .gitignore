@@ -3,3 +3,4 @@
 godoc.zip
 coverage.html
 bin/*
+.vet
