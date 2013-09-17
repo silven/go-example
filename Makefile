@@ -61,7 +61,7 @@ vet:	$(TESTABLE)
 		$(GOVET) $(addprefix $(ROOT_PKG)/, $(sort $(^D)))
 
 .vet:	$(TESTABLE)
-		$(GOVET) $(addprefix $(ROOT_PKG)/, $(sort $(^D)))
+		$(GOVET) $(addprefix $(ROOT_PKG)/, $(sort $(?D)))
 		@touch .vet
 cov:	
 		$(COV_REPORT)
