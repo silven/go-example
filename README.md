@@ -3,7 +3,7 @@ Example Go language project
 
 A project to demonstrate my go project structure and Makefile setup
 
-Can utilize [axw/ocov](https://github.com/axw/gocov) together with [matm/gocov-html](https://github.com/matm/gocov-html) for pretty code coverage testing.
+Can utilize [axw/gocov](https://github.com/axw/gocov) together with [matm/gocov-html](https://github.com/matm/gocov-html) for pretty code coverage testing.
 
 Usage
 ====
