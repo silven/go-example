@@ -1,6 +1,6 @@
 .fmt
 .test
-godoc.zip
-coverage.html
-bin/*
 .vet
+godoc.zip
+bin/*
+*.cov
